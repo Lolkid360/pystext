@@ -1,11 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import PDFUploader from "@/components/PDFUploader";
-import PDFViewer from "@/components/PDFViewer";
-import TableOfContents from "@/components/TableOfContents";
 import ChapterTabs from "@/components/ChapterTabs";
 import { FileText, HelpCircle, CheckCircle } from "lucide-react";
+
+const PDFViewer = dynamic(() => import("@/components/PDFViewer"), {
+  ssr: false,
+});
+const TableOfContents = dynamic(() => import("@/components/TableOfContents"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
